@@ -13,27 +13,78 @@ exports.sendEmail = async (req, res) => {
         await email.save();
         // Estructura HTML del correo con un banner de publicidad
         const htmlMessage = `
-           <html>
+          const htmlMessage = \`
+<html>
 <head>
     <style>
-        /* Estilos CSS para el banner de publicidad */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #222;
+            padding: 20px;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 30px;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
         .banner {
             width: 100%;
-            height: auto;
-            display: block;
+            border-radius: 6px;
             margin-bottom: 20px;
         }
-        .center {
+        .title {
+            color: #004aad;
+            font-size: 24px;
+            font-weight: bold;
             text-align: center;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .content {
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 13px;
+            color: #888;
+        }
+        .highlight {
+            color: #e60000;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <h1>¡SISTEMA API REST!</h1>
-    <h4>DEMO:</h4>
+    <div class="container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_Bolivia.svg/1200px-Flag_Bolivia.svg.png" class="banner" alt="Alianza Popular">
+        <div class="title">ALIANZA POPULAR - SISTEMA DE CONTROL DE VOTOS</div>
+        <div class="subtitle">Notificación automática del sistema</div>
 
-   </body>
+        <div class="content">
+            <p>Estimado/a <strong>${estudiante?.nombre || 'ciudadano/a'}</strong>,</p>
+            <p>Este correo ha sido generado automáticamente para confirmar que se ha registrado información relevante en el <strong>Sistema de Control de Votos</strong> de <span class="highlight">Alianza Popular</span>.</p>
+            <p>Gracias por formar parte de este proceso democrático.</p>
+            <p><strong>Asunto:</strong> ${subject}</p>
+        </div>
+
+        <div class="footer">
+            © ${new Date().getFullYear()} Alianza Popular | Este correo fue generado automáticamente. No responder.
+        </div>
+    </div>
+</body>
 </html>
+\`;
+
 
         `;
 

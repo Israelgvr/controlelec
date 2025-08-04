@@ -4,15 +4,11 @@ const Role = require('../models/role');
 // Crear usuario (sin asignar rol; posteriormente el administrador lo asignará)
 exports.createUser = async (req, res) => {
     try {
-        const { nombres, apellidoPa, apellidoMa, fechaNacimiento, genero, direccion, correo, password } = req.body;
+        const { nombres, cedulaIdentidad,  correo, password } = req.body;
         // Validaciones adicionales pueden ser implementadas según se requiera
         const user = new User({
             nombres,
-            apellidoPa,
-            apellidoMa,
-            fechaNacimiento,
-            genero,
-            direccion,
+            cedulaIdentidad,
             correo,
             password,
             rol: null // Se asignará posteriormente

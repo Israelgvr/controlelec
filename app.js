@@ -14,13 +14,11 @@ const errorHandler = require('./middleware/error');
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 const roleRoutes = require('./routes/roleRoutes');
-const enrollmentRoutes = require('./routes/enrollmentRoutes');
-const progressRoutes = require('./routes/progressRoutes');
+const mesaRoutes = require('./routes/mesaRoutes');
+const votoPreRoutes = require('./routes/votoPresidencialRoutes');
+const votoUniRoutes = require('./routes/votoUninominalRoutes');
+const actaRoutes = require('./routes/actasRoutes');
 
-// ...otras importaciones y configuraciones
-const mealPlanRoutes = require('./routes/mealPlanRoutes');
-const routineRoutes = require('./routes/routineTemplateRoutes');
-const asigroutineRoutes = require('./routes/assignedRoutineRoutes');
 
 
 
@@ -50,11 +48,10 @@ app.use(cors());
 app.use("/api", authRoutes)
 app.use('/api', userRoutes);
 app.use('/api', roleRoutes);
-app.use('/api', enrollmentRoutes);
-app.use('/api', progressRoutes);
-app.use('/api', mealPlanRoutes);
-app.use('/api', routineRoutes);
-app.use('/api',asigroutineRoutes );
+app.use('/api', mesaRoutes);
+app.use('/api', votoPreRoutes );
+app.use('/api', votoUniRoutes );
+app.use('/api', actaRoutes);
 
 
 
