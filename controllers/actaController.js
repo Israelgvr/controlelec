@@ -2,19 +2,19 @@ const Acta = require('../models/Acta');
 
 exports.crearActa = async (req, res) => {
     try {
-        const { mesaId, foto } = req.body;
+        const { mesaId, foto, observado } = req.body; //se agrego el campo observado
 
         if (!foto) return res.status(400).json({ msg: 'Falta la URL de la imagen del acta' });
 
         const existe = await Acta.findOne({ mesa: mesaId });
         if (existe) return res.status(400).json({ msg: 'Ya existe acta para esta mesa' });
 
-        const nuevaActa = new Acta({ mesa: mesaId, foto });
+        const nuevaActa = new Acta({ mesa: mesaId, foto, observado: observado ?? false, });
         await nuevaActa.save();
 
         res.status(201).json(nuevaActa);
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        res.status(500).json({ error: error.message});
     }
 };
 

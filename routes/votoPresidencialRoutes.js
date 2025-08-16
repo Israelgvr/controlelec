@@ -8,5 +8,10 @@ router.get('/votospresidenciales', controller.obtenerVotos);
 router.get('/votospresidenciales/:id', controller.obtenerVotoPorId);
 router.put('/votospresidenciales/:id', controller.actualizarVoto);
 router.delete('/votospresidenciales/:id', controller.eliminarVoto);
+//
+router.get('/votospresidenciales/mesa/:mesaId', controller.obtenerVotoPorMesa);
+
+router.get('/votospresidenciales/estado/:id', controller.obtenerVotoeEstado);
+
 
 module.exports = router;

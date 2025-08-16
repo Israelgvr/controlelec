@@ -9,12 +9,9 @@ const VotoPresidencialSchema = new mongoose.Schema({
         index: true
     },
     votos: {
-        AP: { type: Number, default: 0 },
-        LYP: { type: Number, default: 0 },
+        ALIANZA_POPULAR: { type: Number, default: 0 },
         ADN: { type: Number, default: 0 },
-        APB: { type: Number, default: 0 },
         SUMATE: { type: Number, default: 0 },
-        NGP: { type: Number, default: 0 },
         LIBRE: { type: Number, default: 0 },
         FP: { type: Number, default: 0 },
         MAS_IPSP: { type: Number, default: 0 },

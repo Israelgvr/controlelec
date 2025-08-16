@@ -4,9 +4,9 @@ const { Types } = mongoose;
 const Long = Types.Long;
 
 const MesaSchema = new mongoose.Schema({
-    codigoMesa: { type: Number, required: true, unique: true },
-    numMesa: { type: Long, required: true, unique: true },
-    numeroMesa:  { type: Number, required: true, },
+    codigoMesa: { type: Number, required: true, unique: true },//300001
+    numMesa: { type: Long, required: true, unique: true },//Codigo de barra
+    numeroMesa:  { type: Number, required: true, },//mesa 1
 
     pais: {
         id: Number,
