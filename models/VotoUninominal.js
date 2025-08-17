@@ -8,7 +8,7 @@ const VotoUninominalSchema = new mongoose.Schema({
         index: { unique: true }
     },
     votos: {
-        ALIANZA_POPULAR: { type: Number, default: 0 },
+        AP: { type: Number, default: 0 },
         ADN: { type: Number, default: 0 },
         SUMATE: { type: Number, default: 0 },
         LIBRE: { type: Number, default: 0 },

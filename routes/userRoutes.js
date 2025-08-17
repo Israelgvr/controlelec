@@ -7,7 +7,7 @@ const { isAuthenticated, isAdminOrInstructor } = require('../middleware/auth');
 router.post('/usuarios', createUser);
 
 // Listar usuarios con paginación y búsqueda (acceso para Administrador e Instructor)
-router.get('/usuarios', isAuthenticated, isAdminOrInstructor, getUsers);
+router.get('/usuarios',  getUsers);
 
 // Actualizar usuario (incluye asignación/edición de rol)
 router.put('/usuarios/:userId', isAuthenticated, isAdminOrInstructor, updateUser);

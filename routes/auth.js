@@ -10,7 +10,7 @@ const {errorHandler} = require("../middleware/error");
 
 
 router.post('/registrarse', signup );
-router.get('/usuarios', getAllUsers  );
+router.get('/usuarios1', getAllUsers  );
 router.put('/usuario/:userId', updateUser );
 router.delete('/usuario/:userId', deleteUser );
 router.post('/login', signin );
@@ -20,7 +20,6 @@ router.post('/send', sendEmail);
 router.get ('/correos', listAllEmails);
 router.post('/request-password-reset', requestPasswordReset);
 router.put('/reset-password/:token', resetPassword);
-////CARRERAS
 
 
 

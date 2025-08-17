@@ -96,7 +96,7 @@ exports.eliminarVoto = async (req, res) => {
 //REPORTES
 exports.obtenerResultadosPorCircunscripcion = async (req, res) => {
     try {
-        const idCircunscripcion = parseInt(req.params.id); // por ejemplo: /resultados/circunscripcion/20
+        const idCircunscripcion = parseInt(req.params.id); // ej: /votospresidenciales/totales/20
 
         const resultados = await VotoUninominal.aggregate([
             {
@@ -116,61 +116,46 @@ exports.obtenerResultadosPorCircunscripcion = async (req, res) => {
             {
                 $group: {
                     _id: null,
-                    AP: { $sum: '$votos.AP' },
-                    LYP: { $sum: '$votos.LYP' },
+                    AP: { $sum: '$votos.ALIANZA_POPULAR' },
                     ADN: { $sum: '$votos.ADN' },
-                    APB: { $sum: '$votos.APB' },
                     SUMATE: { $sum: '$votos.SUMATE' },
-                    NGP: { $sum: '$votos.NGP' },
                     LIBRE: { $sum: '$votos.LIBRE' },
                     FP: { $sum: '$votos.FP' },
                     MAS_IPSP: { $sum: '$votos.MAS_IPSP' },
                     MORENA: { $sum: '$votos.MORENA' },
                     UNIDAD: { $sum: '$votos.UNIDAD' },
-                    PDC: { $sum: '$votos.PDC' }
+                    PDC: { $sum: '$votos.PDC' },
+                    votosBlancos: { $sum: '$votosBlancos' },
+                    votosNulos: { $sum: '$votosNulos' },
+                    votosValidos: { $sum: '$votosValidos' }
                 }
             },
             {
                 $project: {
                     _id: 0,
-                    resultados: [
-                        { partido: "AP", votos: "$AP" },
-                        { partido: "LYP", votos: "$LYP" },
-                        { partido: "ADN", votos: "$ADN" },
-                        { partido: "APB", votos: "$APB" },
-                        { partido: "SUMATE", votos: "$SUMATE" },
-                        { partido: "NGP", votos: "$NGP" },
-                        { partido: "LIBRE", votos: "$LIBRE" },
-                        { partido: "FP", votos: "$FP" },
-                        { partido: "MAS_IPSP", votos: "$MAS_IPSP" },
-                        { partido: "MORENA", votos: "$MORENA" },
-                        { partido: "UNIDAD", votos: "$UNIDAD" },
-                        { partido: "PDC", votos: "$PDC" }
-                    ]
-                }
-            },
-            {
-                $unwind: '$resultados'
-            },
-            {
-                $sort: {
-                    'resultados.votos': -1
-                }
-            },
-            {
-                $group: {
-                    _id: null,
-                    resultados: { $push: '$resultados' }
+                    AP: 1,
+                    ADN: 1,
+                    SUMATE: 1,
+                    LIBRE: 1,
+                    FP: 1,
+                    MAS_IPSP: 1,
+                    MORENA: 1,
+                    UNIDAD: 1,
+                    PDC: 1,
+                    votosBlancos: 1,
+                    votosNulos: 1,
+                    votosValidos: 1
                 }
             }
         ]);
 
-        res.json(resultados[0]?.resultados || []);
+        res.json(resultados[0] || {});
 
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 };
+
 
 
 ///
